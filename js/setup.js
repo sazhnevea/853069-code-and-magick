@@ -11,20 +11,15 @@ var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
-
 function getRandomNumber(max) {
   return Math.floor(Math.random() * max + 1);
-};
-
+}
 function getRandomElement(array) {
   var length = array.length;
   var randomIndex = getRandomNumber(length - 1);
 
   return array[randomIndex];
 }
-var name = getRandomElement(firstNames);
-
-
 
 var getSimilarWizard = function (name, colorOne, colorTwo) {
   var similarWizard = {};
