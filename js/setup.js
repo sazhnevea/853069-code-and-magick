@@ -11,14 +11,24 @@ var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
-var getRandomElement = function (array) {
-  var randomElement = Math.floor(Math.random() * array.length);
-  return randomElement;
+
+function getRandomNumber(max) {
+  return Math.floor(Math.random() * max + 1);
 };
+
+function getRandomElement(array) {
+  var length = array.length;
+  var randomIndex = getRandomNumber(length - 1);
+
+  return array[randomIndex];
+}
+var name = getRandomElement(firstNames);
+
+
 
 var getSimilarWizard = function (name, colorOne, colorTwo) {
   var similarWizard = {};
-  similarWizard.name = firstNames[getRandomElement(name)] + ' ' + secondNames[getRandomElement(name)];
+  similarWizard.name = getRandomElement(firstNames) + ' ' + getRandomElement(secondNames);
   similarWizard.coatColor = colorOne[getRandomElement(colorOne)];
   similarWizard.eyesColor = colorTwo[getRandomElement(colorTwo)];
   return similarWizard;
