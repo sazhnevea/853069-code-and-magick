@@ -62,5 +62,5 @@ similarWizards.forEach(function (wizard) {
 similarListElement.appendChild(fragment);
 
 userDialog.querySelector('.setup-similar')
-.classList
-.remove('hidden');
+          .classList
+          .remove('hidden');
