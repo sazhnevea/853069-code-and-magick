@@ -24,8 +24,8 @@ function getRandomElement(array) {
 var getSimilarWizard = function (name, colorOne, colorTwo) {
   var similarWizard = {};
   similarWizard.name = getRandomElement(firstNames) + ' ' + getRandomElement(secondNames);
-  similarWizard.coatColor = colorOne[getRandomElement(colorOne)];
-  similarWizard.eyesColor = colorTwo[getRandomElement(colorTwo)];
+  similarWizard.coatColor = getRandomElement(colorOne);
+  similarWizard.eyesColor = getRandomElement(colorTwo);
   return similarWizard;
 };
 
@@ -55,9 +55,10 @@ var renderWizard = function (wizard) {
 };
 
 var fragment = document.createDocumentFragment();
-for (var i = 0; i < similarWizards.length; i++) {
-  fragment.appendChild(renderWizard(similarWizards[i]));
-}
+similarWizards.forEach(function (wizard) {
+  var wizardElement = renderWizard(wizard);
+  fragment.appendChild(wizardElement);
+});
 similarListElement.appendChild(fragment);
 
 userDialog.querySelector('.setup-similar')
