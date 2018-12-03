@@ -7,6 +7,7 @@ var firstNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кр
 var secondNames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
+var fireBallColor = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
@@ -64,3 +65,62 @@ similarListElement.appendChild(fragment);
 userDialog.querySelector('.setup-similar')
           .classList
           .remove('hidden');
+
+
+var popup = document.querySelector('.setup');
+var openPopupButton = document.querySelector('.setup-open');
+var closePopupButton = popup.querySelector('.setup-close');
+
+var openPopup = function () {
+  popup.classList.remove('hidden');
+  openPopupButton.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === 13) {
+      popup.classList.remove('hidden');
+    }
+  });
+};
+var closePopup = function () {
+  popup.classList.add('hidden');
+};
+openPopupButton.addEventListener('click', function () {
+  openPopup();
+});
+closePopupButton.addEventListener('click', function () {
+  closePopup();
+});
+
+openPopupButton.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) {
+    openPopup();
+  }
+});
+
+popup.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 27) { // ESC
+    closePopup();
+  }
+});
+
+closePopupButton.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) { // enter
+    closePopup();
+  }
+});
+
+// задание3
+var setupWizard = document.querySelector('.setup-wizard');
+setupWizard.querySelector('.wizard-coat').addEventListener('click', function () {
+  setupWizard.querySelector('.wizard-coat').style.fill = getRandomElement(coatColor);
+});
+
+setupWizard.querySelector('.wizard-eyes').addEventListener('click', function () {
+  setupWizard.querySelector('.wizard-eyes').style.fill = getRandomElement(eyesColor);
+});
+
+var fareball = document.querySelector('.setup-fireball-wrap');
+fareball.addEventListener('click', function () {
+  var currentFireBallColor = getRandomElement(fireBallColor);
+  fareball.style.background = currentFireBallColor;
+  fareball.querySelector('input').value = currentFireBallColor;
+
+});
