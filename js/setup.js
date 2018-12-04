@@ -66,43 +66,51 @@ userDialog.querySelector('.setup-similar')
           .classList
           .remove('hidden');
 
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
 
 var popup = document.querySelector('.setup');
 var openPopupButton = document.querySelector('.setup-open');
 var closePopupButton = popup.querySelector('.setup-close');
 
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
 var openPopup = function () {
   popup.classList.remove('hidden');
-  openPopupButton.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === 13) {
-      popup.classList.remove('hidden');
-    }
-  });
+  document.addEventListener('keydown', onPopupEscPress);
 };
 var closePopup = function () {
   popup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
 };
+
 openPopupButton.addEventListener('click', function () {
   openPopup();
 });
+
 closePopupButton.addEventListener('click', function () {
   closePopup();
 });
 
 openPopupButton.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 13) {
+  if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
 });
 
 popup.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 27) { // ESC
+  if (evt.keyCode === ESC_KEYCODE) { // ESC
     closePopup();
   }
 });
 
 closePopupButton.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 13) { // enter
+  if (evt.keyCode === ENTER_KEYCODE) { // enter
     closePopup();
   }
 });
