@@ -69,10 +69,10 @@ userDialog.querySelector('.setup-similar')
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
 
-
 var popup = document.querySelector('.setup');
 var openPopupButton = document.querySelector('.setup-open');
 var closePopupButton = popup.querySelector('.setup-close');
+var inputField = popup.querySelector('.setup-user-name');
 
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
@@ -103,14 +103,13 @@ openPopupButton.addEventListener('keydown', function (evt) {
   }
 });
 
-popup.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ESC_KEYCODE) { // ESC
-    closePopup();
-  }
+inputField.addEventListener('focus', function () {
+  document.removeEventListener('keydown', onPopupEscPress);
 });
 
+
 closePopupButton.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) { // enter
+  if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
 });
@@ -130,5 +129,4 @@ fareball.addEventListener('click', function () {
   var currentFireBallColor = getRandomElement(fireBallColor);
   fareball.style.background = currentFireBallColor;
   fareball.querySelector('input').value = currentFireBallColor;
-
 });
