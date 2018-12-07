@@ -72,29 +72,27 @@ var ENTER_KEYCODE = 13;
 var popup = document.querySelector('.setup');
 var openPopupButton = document.querySelector('.setup-open');
 var closePopupButton = popup.querySelector('.setup-close');
-var inputField = popup.querySelector('.setup-user-name');
 
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
-    closePopup();
+    if (evt.target.tagName === 'INPUT') {
+      return;
+    }
+    else {
+      closePopup();
+    }
   }
 };
-
 var openPopup = function () {
   popup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
 var closePopup = function () {
   popup.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscPress);
 };
 
 openPopupButton.addEventListener('click', function () {
   openPopup();
-});
-
-closePopupButton.addEventListener('click', function () {
-  closePopup();
 });
 
 openPopupButton.addEventListener('keydown', function (evt) {
@@ -103,16 +101,18 @@ openPopupButton.addEventListener('keydown', function (evt) {
   }
 });
 
-inputField.addEventListener('focus', function () {
-  document.removeEventListener('keydown', onPopupEscPress);
+closePopupButton.addEventListener('click', function () {
+  closePopup();
 });
-
 
 closePopupButton.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
 });
+
+
+// && evt.target.tagName === !'input'
 
 // задание3
 var setupWizard = document.querySelector('.setup-wizard');
