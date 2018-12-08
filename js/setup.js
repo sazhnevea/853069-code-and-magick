@@ -77,8 +77,7 @@ var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     if (evt.target.tagName === 'INPUT') {
       return;
-    }
-    else {
+    } else {
       closePopup();
     }
   }
@@ -90,6 +89,8 @@ var openPopup = function () {
 var closePopup = function () {
   popup.classList.add('hidden');
 };
+
+document.addEventListener('keydown', onPopupEscPress);
 
 openPopupButton.addEventListener('click', function () {
   openPopup();
