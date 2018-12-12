@@ -67,12 +67,15 @@ userDialog.querySelector('.setup-similar')
           .remove('hidden');
 
 var ESC_KEYCODE = 27;
+window.ESC_KEYCODE = ESC_KEYCODE;
+
 var ENTER_KEYCODE = 13;
+window.ENTER_KEYCODE = ENTER_KEYCODE;
+
 
 var popup = document.querySelector('.setup');
 var openPopupButton = document.querySelector('.setup-open');
 var closePopupButton = popup.querySelector('.setup-close');
-
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     if (evt.target.tagName === 'INPUT') {
@@ -82,7 +85,9 @@ var onPopupEscPress = function (evt) {
     }
   }
 };
+
 var openPopup = function () {
+  window.setDefaultPosition();
   popup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
@@ -111,9 +116,6 @@ closePopupButton.addEventListener('keydown', function (evt) {
     closePopup();
   }
 });
-
-
-// && evt.target.tagName === !'input'
 
 // задание3
 var setupWizard = document.querySelector('.setup-wizard');

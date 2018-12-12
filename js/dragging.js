@@ -7,11 +7,15 @@
   dialogHandler.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
+    var defaultTop = setupDialogElement.offsetTop;
+    window.defaultTop = defaultTop;
+    var defaultLeft = setupDialogElement.offsetLeft;
+    window.defaultLeft = defaultLeft;
+
     var startCoords = {
       x: evt.clientX,
       y: evt.clientY
     };
-
     var dragged = false;
 
     var onMouseMove = function (moveEvt) {
@@ -30,7 +34,6 @@
 
       setupDialogElement.style.top = (setupDialogElement.offsetTop - shift.y) + 'px';
       setupDialogElement.style.left = (setupDialogElement.offsetLeft - shift.x) + 'px';
-
     };
 
     var onMouseUp = function (upEvt) {
@@ -46,12 +49,16 @@
         };
         dialogHandler.addEventListener('click', onClickPreventDefault);
       }
-
     };
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
+
+    var setDefaultPosition = function () {
+      setupDialogElement.style.top = defaultTop + 'px';
+      setupDialogElement.style.left = defaultLeft + 'px';
+    };
+    window.setDefaultPosition = setDefaultPosition;
+
   });
-
-
 })();
